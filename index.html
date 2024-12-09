@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,11 +7,14 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       background-color: #f9f9f9;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     h1 {
       color: #333;
@@ -18,14 +22,19 @@
       font-size: 1.8rem;
     }
     .container {
-      width: 90%;
-      max-width: 600px;
-      margin: 20px auto;
+      width: 100%;
+      height: 100vh; /* Full viewport height */
+      margin: 0;
       padding: 20px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
+      border: none;
+      border-radius: 0;
       background-color: #fff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: none;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     #mic-button {
       cursor: pointer;
@@ -51,7 +60,9 @@
       border: 2px solid #ccc;
       border-radius: 5px;
       background: #f0f9ff;
-      min-height: 30px;
+      min-height: 50px;
+      width: 90%;
+      max-width: 600px;
       box-sizing: border-box;
       text-align: left;
       white-space: pre-wrap;
@@ -99,11 +110,11 @@
 
     let recognition;
     let isRecording = false;
-    let fullTranscript = ""; // Variable to hold full transcription text
+    let fullTranscript = "";
 
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
-      recognition.lang = 'ko-KR'; // Change to 'ko-KR' for Korean
+      recognition.lang = 'ko-KR'; 
       recognition.interimResults = true;
       recognition.continuous = false;
 
@@ -118,11 +129,10 @@
 
       recognition.onend = () => {
         if (isRecording) {
-          recognition.start(); // Restart automatically if still holding the button
+          recognition.start();
         }
       };
 
-      // Add event listeners for both mobile and desktop
       micButton.addEventListener('mousedown', startRecording);
       micButton.addEventListener('mouseup', stopRecording);
       micButton.addEventListener('mouseleave', stopRecording);
@@ -134,7 +144,7 @@
     }
 
     function startRecording(event) {
-      event.preventDefault(); // Prevent scrolling or default behavior on mobile
+      event.preventDefault();
       isRecording = true;
       micButton.classList.add('active');
       recognition.start();
@@ -148,7 +158,7 @@
     }
 
     function clearTranscription() {
-      fullTranscript = ""; // Clear the stored transcript
+      fullTranscript = "";
       transcription.textContent = "Your speech will appear here...";
     }
 
@@ -164,3 +174,4 @@
 
 </body>
 </html>
+
