@@ -113,7 +113,7 @@
           method: 'POST',
           headers: {
             'Accept': 'application/vnd.github.v3+json',
-            'Authorization': 'Bearer YOUR_GITHUB_TOKEN' // Replace with a Personal Access Token
+            'Authorization': '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' // Replace with a Personal Access Token
           },
           body: JSON.stringify({
             event_type: "api-request", // Event trigger name
