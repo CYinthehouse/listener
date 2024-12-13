@@ -3,91 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Korean Voice Correction</title>
+  <title>Korean Voice Feedback</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin: 0;
-      padding: 20px;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
     }
     button {
-      font-size: 18px;
+      background-color: #007bff;
+      color: white;
       padding: 10px 20px;
-      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
+      margin: 10px;
     }
-    #output {
+    button:hover {
+      background-color: #0056b3;
+    }
+    #transcription {
+      margin: 20px auto;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 600px;
+      min-height: 50px;
+      background-color: #f9f9f9;
+    }
+    #feedback {
       margin-top: 20px;
       font-size: 18px;
-      color: #333;
+      color: #28a745;
     }
   </style>
 </head>
 <body>
 
-  <h1>Korean Voice Correction</h1>
-  <p>Hold the button, speak a sentence in Korean, and get feedback!</p>
+  <h1>Korean Speaking Practice</h1>
+  <p>Hold the button to record your voice in Korean.</p>
+  
+  <button id="recordButton">Hold to Speak</button>
+  <div id="transcription">Your speech will appear here...</div>
+  <button id="sendButton">Submit for Feedback</button>
 
-  <button id="record-button">🎤 Hold to Speak</button>
-  <div id="output">Transcription and corrections will appear here...</div>
+  <div id="feedback">Feedback will appear here...</div>
 
   <script>
-    let recognition;
-    const output = document.getElementById("output");
-    const recordButton = document.getElementById("record-button");
+    const recordButton = document.getElementById('recordButton');
+    const transcriptionDiv = document.getElementById('transcription');
+    const sendButton = document.getElementById('sendButton');
+    const feedbackDiv = document.getElementById('feedback');
 
-    // Check for browser support
+    let recognition;
+    let isRecording = false;
+
+    // Initialize Speech Recognition
     if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
       recognition = new (window.webkitSpeechRecognition || window.SpeechRecognition)();
-      recognition.lang = 'ko-KR'; // Korean Language
-      recognition.interimResults = false; // Only final result
-      recognition.continuous = false;
+      recognition.lang = 'ko-KR'; // Korean language
+      recognition.interimResults = true;
 
-      let isRecording = false;
-
-      // Start Recording
-      recordButton.addEventListener("mousedown", () => {
-        output.textContent = "Listening...";
-        recognition.start();
-        isRecording = true;
-      });
-
-      // Stop Recording
-      recordButton.addEventListener("mouseup", () => {
-        if (isRecording) {
-          recognition.stop();
-          isRecording = false;
-        }
-      });
-
-      // Process Results
-      recognition.onresult = async (event) => {
-        const userTranscript = event.results[0][0].transcript;
-        output.textContent = `You said: "${userTranscript}"\nProcessing...`;
-
-        // Send transcript to GitHub Actions API (replace URL with your GitHub Actions backend)
-        try {
-          const response = await fetch("YOUR_BACKEND_API_URL", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ transcript: userTranscript })
-          });
-          const data = await response.json();
-
-          // Display the correction
-          output.textContent = data.correctedText || "Error processing response.";
-        } catch (error) {
-          output.textContent = "An error occurred. Please try again later.";
-        }
+      recognition.onresult = (event) => {
+        const transcript = event.results[event.results.length - 1][0].transcript;
+        transcriptionDiv.textContent = transcript;
       };
 
-      recognition.onerror = () => {
-        output.textContent = "Error occurred while recognizing speech.";
+      recognition.onend = () => {
+        if (isRecording) {
+          recognition.start(); // Restart if still holding the button
+        }
       };
     } else {
-      output.textContent = "Speech recognition not supported in this browser.";
+      transcriptionDiv.textContent = "Speech recognition not supported in this browser.";
     }
+
+    // Start recording on button press
+    recordButton.addEventListener('mousedown', () => {
+      if (recognition) {
+        isRecording = true;
+        recognition.start();
+        transcriptionDiv.textContent = "Listening...";
+      }
+    });
+
+    // Stop recording on button release
+    recordButton.addEventListener('mouseup', () => {
+      isRecording = false;
+      if (recognition) recognition.stop();
+    });
+
+    // Send transcript to GitHub Actions (Trigger Workflow)
+    sendButton.addEventListener('click', async () => {
+      const transcript = transcriptionDiv.textContent.trim();
+      if (!transcript || transcript === "Listening...") {
+        feedbackDiv.textContent = "Please say something first!";
+        return;
+      }
+
+      feedbackDiv.textContent = "Sending for feedback...";
+
+      try {
+        const response = await fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': 'Bearer YOUR_GITHUB_TOKEN' // Replace with a Personal Access Token
+          },
+          body: JSON.stringify({
+            event_type: "api-request", // Event trigger name
+            client_payload: { transcript: transcript }
+          })
+        });
+
+        if (response.ok) {
+          feedbackDiv.textContent = "Feedback is being processed. Please check your GitHub Actions logs.";
+        } else {
+          feedbackDiv.textContent = "Failed to send transcript. Please try again.";
+          console.error("Error:", response.statusText);
+        }
+      } catch (error) {
+        feedbackDiv.textContent = "An error occurred. Please try again.";
+        console.error("Error:", error);
+      }
+    });
   </script>
 </body>
 </html>
