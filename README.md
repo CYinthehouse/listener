@@ -109,7 +109,7 @@
       feedbackDiv.textContent = "Sending for feedback...";
 
       try {
-        const response = await fetch('https://api.github.com/repos/CYinthehouse/listener/dispatches', {
+        const response = await fetch('[https://api.github.com/repos/CYinthehouse/listener/dispatches](https://us-central1-kortut.cloudfunctions.net/api)', {
           method: 'POST',
           headers: {
             'Accept': 'application/vnd.github.v3+json',
