@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+button.pet-no, button.workout-no, button.pushup-no { background: linear-gradient(45deg, #f39c12, #e67e22); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3); }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Instant App</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -496,6 +496,15 @@
                 const targetStep = document.getElementById(stepId);
                 if (targetStep) {
                     targetStep.classList.add('active');
+                    
+                    // Scroll to top for individual class pages on mobile
+                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass'].includes(stepId)) {
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                document.querySelector('.container').scrollTop = 0;
+                            }, 100);
+                        }
+                    }
                 }
             }, currentActive ? 300 : 0);
         }
