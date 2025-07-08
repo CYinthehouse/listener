@@ -1,4 +1,4 @@
-button.pet-no, button.workout-no, button.pushup-no { background: linear-gradient(45deg, #f39c12, #e67e22); box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3); }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,6 @@ button.pet-no, button.workout-no, button.pushup-no { background: linear-gradient
             margin: 0;
             padding: 0;
             color: white;
-            overflow: hidden;
         }
         
         .container {
@@ -39,6 +38,7 @@ button.pet-no, button.workout-no, button.pushup-no { background: linear-gradient
             z-index: 9999;
             animation: fadeInUp 0.8s ease-out;
             transition: all 0.5s ease-out;
+            overflow-y: auto;
         }
         
         .container.disappear {
