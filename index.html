@@ -159,14 +159,17 @@
         
         .checklist {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
+            border: 2px solid #fff;
+            border-radius: 0;
             padding: 2rem;
             margin: 2rem auto;
             max-width: 600px;
             backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                0 0 0 4px rgba(255, 255, 255, 0.3);
             text-align: left;
+            image-rendering: pixelated;
         }
         
         .checklist ul {
@@ -183,12 +186,29 @@
             line-height: 1.6;
         }
         
+        .checklist li label {
+            text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db, 1px 1px 0 #3498db;
+        }
+        
+        .checklist h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        }
+        
         .checklist input[type="checkbox"] {
             margin-right: 1rem;
             margin-top: 0.2rem;
             transform: scale(1.5);
             cursor: pointer;
             flex-shrink: 0;
+        }
+        
+        button.large-button {
+            padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
+            min-width: 180px;
         }
         
         .small-description {
@@ -347,7 +367,7 @@
             <p class="small-description">Perfect for learners who prefer a relaxed, flexible approach to studying.</p>
             
             <div class="checklist">
-                <h3 style="color: #ffd700; margin-bottom: 1.5rem; text-align: center; font-size: clamp(0.9rem, 2.8vw, 1.1rem);">CHECKLIST</h3>
+                <h3>CHECKLIST</h3>
                 <ul>
                     <li>
                         <input type="checkbox" id="casual-videos">
