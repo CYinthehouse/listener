@@ -88,12 +88,13 @@
             text-align-last: center;
         }
         
-        .self-study-description {
-            font-size: clamp(0.8rem, 3vw, 1.1rem);
-            margin: 0 auto 1.5rem auto;
+        .small-description {
+            font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+            margin: 2rem auto 2rem auto;
             opacity: 0.9;
             max-width: 600px;
             text-align: center;
+            line-height: 1.6;
         }
         
         .coin-benefit {
@@ -157,80 +158,6 @@
             margin: 0.5rem;
         }
         
-        .checklist {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #fff;
-            border-radius: 0;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 600px;
-            backdrop-filter: blur(5px);
-            box-shadow: 
-                0 4px 15px rgba(0, 0, 0, 0.2),
-                0 0 0 4px rgba(255, 255, 255, 0.3);
-            text-align: left;
-            image-rendering: pixelated;
-        }
-        
-        .checklist ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .checklist li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-            line-height: 1.6;
-        }
-        
-        .checklist li label {
-            text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db, 1px 1px 0 #3498db;
-        }
-        
-        .clickable-text {
-            color: #4ecdc4;
-            cursor: pointer;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-        
-        .clickable-text:hover {
-            color: #31afed;
-        }
-        
-        .checklist h3 {
-            color: #ffd700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-            text-shadow: -1px -1px 0 #ff8c00, 1px -1px 0 #ff8c00, -1px 1px 0 #ff8c00, 1px 1px 0 #ff8c00;
-        }
-        
-        .checklist input[type="checkbox"] {
-            margin-right: 1rem;
-            margin-top: 0.2rem;
-            transform: scale(1.5);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        
-        button.large-button {
-            padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
-            min-width: 180px;
-        }
-        
-        .small-description {
-            font-size: clamp(0.9rem, 3.5vw, 1.3rem);
-            margin: 2rem auto 2rem auto;
-            opacity: 0.9;
-            max-width: 600px;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
         button.secondary { background: linear-gradient(45deg, #9b59b6, #8e44ad); box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
         button.primary { background: linear-gradient(45deg, #e74c3c, #c0392b); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
         button.pet-yes, button.workout-yes, button.pushup-yes { background: linear-gradient(45deg, #27ae60, #2ecc71); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
@@ -238,6 +165,11 @@
         button.class-button { background: linear-gradient(45deg, #3498db, #2980b9); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
         button.coaching-button { background: linear-gradient(45deg, #e74c3c, #c0392b); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
         button.main-menu, button.back-to-class { background: linear-gradient(45deg, #9b59b6, #8e44ad); box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
+        
+        button.large-button {
+            padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
+            min-width: 180px;
+        }
         
         p {
             font-size: clamp(1rem, 4vw, 1.5rem);
@@ -309,6 +241,66 @@
             line-height: 1.5;
             max-width: none;
             padding: 0 1rem;
+        }
+        
+        .checklist {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #fff;
+            border-radius: 0;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.2),
+                0 0 0 4px rgba(255, 255, 255, 0.3);
+            text-align: left;
+            image-rendering: pixelated;
+        }
+        
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            line-height: 1.6;
+        }
+        
+        .checklist li label {
+            text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db, 1px 1px 0 #3498db;
+        }
+        
+        .clickable-text {
+            color: #4ecdc4;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #31afed;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            transform: scale(1.5);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .checklist h3 {
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            text-shadow: -1px -1px 0 #ff8c00, 1px -1px 0 #ff8c00, -1px 1px 0 #ff8c00, 1px 1px 0 #ff8c00;
         }
         
         @media (max-width: 768px) {
@@ -400,7 +392,7 @@
             </div>
             
             <div class="buttons">
-                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+                <button onclick="showStep('selfStudySection')" class="main-menu">Back</button>
             </div>
         </div>
 
