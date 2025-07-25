@@ -398,19 +398,32 @@
 
         <div id="seriousStudy" class="step">
             <h1>🎯 Serious Learning Style</h1>
-            <p class="class-description">Designed for dedicated learners who want structured, intensive study sessions.</p>
+            <p class="small-description">Designed for dedicated learners who want structured, intensive study sessions.</p>
             
-            <div class="class-container">
-                <div class="class-buttons-grid">
-                    <button onclick="showStep('videoLessons')" class="class-button">Video Lessons</button>
-                    <button onclick="showStep('practiceExercises')" class="class-button">Practice Exercises</button>
-                    <button onclick="showStep('studyGuides')" class="class-button">Study Guides</button>
-                    <button onclick="showStep('progressTracker')" class="class-button">Progress Tracker</button>
-                </div>
+            <div class="checklist">
+                <h3>CHECKLIST</h3>
+                <ul>
+                    <li>
+                        <input type="checkbox">
+                        <label>2-3 <span class="clickable-text" onclick="showVideoLessonsPopup()">Video Lessons</span> per week</label>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <label>Complete the <span class="clickable-text" onclick="showGamesPopup()">Games and PDFs</span> in each Video Lesson</label>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <label>5 <span class="clickable-text" onclick="showFlashcardsPopup()">Flashcards</span> per day</label>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <label>Attend <span class="clickable-text" onclick="showSupportClassesPopup()">Support Classes</span> for extra practice, if your schedule permits</label>
+                    </li>
+                </ul>
             </div>
             
             <div class="buttons">
-                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
+                <button onclick="showStep('selfStudySection')" class="main-menu">Back</button>
             </div>
         </div>
 
