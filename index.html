@@ -88,6 +88,34 @@
             text-align-last: center;
         }
         
+        .class-description-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0 auto 1.5rem auto;
+            max-width: 800px;
+            flex-wrap: wrap;
+        }
+        
+        .class-description-text {
+            font-size: clamp(0.8rem, 3vw, 1.1rem);
+            opacity: 0.9;
+            text-align: justify;
+            text-align-last: left;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+        
+        .class-description-image {
+            width: clamp(120px, 25vw, 200px);
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+        
         .small-description {
             font-size: clamp(0.9rem, 3.5vw, 1.3rem);
             margin: 2rem auto 2rem auto;
@@ -304,6 +332,21 @@
         }
         
         @media (max-width: 768px) {
+            .class-description-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .class-description-text {
+                text-align: justify;
+                text-align-last: center;
+                min-width: auto;
+            }
+            
+            .class-description-image {
+                width: clamp(100px, 30vw, 150px);
+            }
+            
             .class-buttons-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
             .class-buttons-grid button { min-height: 60px; font-size: clamp(0.6rem, 2.5vw, 0.8rem); padding: 0.6rem 0.3rem; }
             .class-container { max-width: 90vw; padding: 1.5rem; }
@@ -334,7 +377,12 @@
 
         <div id="classesSection" class="step">
             <h1>📚 Welcome to Class!</h1>
-            <p class="class-description">There are 4 classes you can take right now. These classes are optional and drop-in. That means a new topic is covered every week, so you won't miss anything if you can't make it to class. These classes are meant for you to get in some extra practice!</p>
+            <div class="class-description-container">
+                <div class="class-description-text">
+                    There are 4 classes you can take right now. These classes are optional and drop-in. That means a new topic is covered every week, so you won't miss anything if you can't make it to class. These classes are meant for you to get in some extra practice!
+                </div>
+                <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/calendar.png?v=1752640266" alt="Class Calendar" class="class-description-image">
+            </div>
             <p class="timezone-text" style="text-shadow: -1px -1px 0 #ff7777, 1px -1px 0 #ff7777, -1px 1px 0 #ff7777, 1px 1px 0 #ff7777;"><strong>All class times are in the New York time zone.</strong></p>
             
             <div class="class-container">
