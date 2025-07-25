@@ -405,7 +405,7 @@
                 <ul>
                     <li>
                         <input type="checkbox">
-                        <label>2-3 <span class="clickable-text" onclick="showVideoLessonsPopup()">Video Lessons</span> per week</label>
+                        <label>1 <span class="clickable-text" onclick="showSeriousVideoLessonsPopup()">Video Lesson</span> per day + 1 Podcast per day</label>
                     </li>
                     <li>
                         <input type="checkbox">
@@ -413,11 +413,11 @@
                     </li>
                     <li>
                         <input type="checkbox">
-                        <label>5 <span class="clickable-text" onclick="showFlashcardsPopup()">Flashcards</span> per day</label>
+                        <label>10 <span class="clickable-text" onclick="showSeriousFlashcardsPopup()">Flashcards</span> per day</label>
                     </li>
                     <li>
                         <input type="checkbox">
-                        <label>Attend <span class="clickable-text" onclick="showSupportClassesPopup()">Support Classes</span> for extra practice, if your schedule permits</label>
+                        <label>Attend at least 3 <span class="clickable-text" onclick="showSeriousSupportClassesPopup()">Support Classes</span> per week for extra practice</label>
                     </li>
                 </ul>
             </div>
@@ -889,6 +889,37 @@
                      style="max-width: 100%; max-height: 50vh; border-radius: 10px; margin: 10px 0;" 
                      alt="Support Classes Demo">
                 <br>Optional live classes where you can get extra practice and ask questions. These include Monday Sentence Building, Tuesday Reading, and Wednesday Extra Help sessions. Attend when your schedule allows!`
+            );
+        }
+        
+        // Serious Learning Style specific popups
+        function showSeriousVideoLessonsPopup() {
+            createPopup(
+                '🎥 Video Lessons + Podcasts',
+                `<img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/VIDEOGIF.gif?v=1753480142" 
+                     style="max-width: 100%; max-height: 50vh; border-radius: 10px; margin: 10px 0;" 
+                     alt="Video Lessons Demo">
+                <br>Watch 1 video lesson daily plus 1 podcast per day. This intensive daily routine builds strong foundations and keeps you consistently engaged with Korean learning. Each lesson includes interactive elements and the podcasts provide additional listening practice!`
+            );
+        }
+        
+        function showSeriousFlashcardsPopup() {
+            createPopup(
+                '💳 Flashcards - Intensive',
+                `<img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/FLASHCARDS.gif?v=1753480480" 
+                     style="max-width: 100%; max-height: 50vh; border-radius: 10px; margin: 10px 0;" 
+                     alt="Flashcards Demo">
+                <br>Review 10 flashcards daily to rapidly build your vocabulary and reinforce key concepts. This intensive spaced repetition method accelerates your learning and helps move information to long-term memory faster. Consistency with 10 cards daily yields excellent results!`
+            );
+        }
+        
+        function showSeriousSupportClassesPopup() {
+            createPopup(
+                '👥 Support Classes - Recommended',
+                `<img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/SUPPORTGIF.gif?v=1753480558" 
+                     style="max-width: 100%; max-height: 50vh; border-radius: 10px; margin: 10px 0;" 
+                     alt="Support Classes Demo">
+                <br>Still optional and drop-in classes, but recommended to attend at least 3 per week for extra practice. These include Monday Sentence Building, Tuesday Reading, and Wednesday Extra Help sessions. Regular attendance accelerates your progress!`
             );
         }
     </script>
