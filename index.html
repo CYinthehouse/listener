@@ -822,6 +822,8 @@
                 max-height: 95vh;
                 color: white;
                 font-family: 'Press Start 2P', cursive;
+                opacity: 1;
+                transition: opacity 0.3s ease-out;
             `;
             
             popupContainer.innerHTML = `
@@ -843,7 +845,10 @@
         function closePopup() {
             const popup = document.getElementById('learningPopup');
             if (popup) {
-                popup.remove();
+                popup.style.opacity = '0';
+                setTimeout(() => {
+                    popup.remove();
+                }, 300);
             }
         }
         
