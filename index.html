@@ -157,9 +157,38 @@
             margin: 0.5rem;
         }
         
-        button.large-button {
-            padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
-            min-width: 180px;
+        .checklist {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+        
+        .checklist ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            line-height: 1.6;
+        }
+        
+        .checklist input[type="checkbox"] {
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+            transform: scale(1.5);
+            cursor: pointer;
+            flex-shrink: 0;
         }
         
         .small-description {
@@ -315,19 +344,32 @@
 
         <div id="casualStudy" class="step">
             <h1>😊 Casual Learning Style</h1>
-            <p class="class-description">Perfect for learners who prefer a relaxed, flexible approach to studying.</p>
+            <p class="small-description">Perfect for learners who prefer a relaxed, flexible approach to studying.</p>
             
-            <div class="class-container">
-                <div class="class-buttons-grid">
-                    <button onclick="showStep('videoLessons')" class="class-button">Video Lessons</button>
-                    <button onclick="showStep('practiceExercises')" class="class-button">Practice Exercises</button>
-                    <button onclick="showStep('studyGuides')" class="class-button">Study Guides</button>
-                    <button onclick="showStep('progressTracker')" class="class-button">Progress Tracker</button>
-                </div>
+            <div class="checklist">
+                <h3 style="color: #ffd700; margin-bottom: 1.5rem; text-align: center; font-size: clamp(0.9rem, 2.8vw, 1.1rem);">CHECKLIST</h3>
+                <ul>
+                    <li>
+                        <input type="checkbox" id="casual-videos">
+                        <label for="casual-videos">2-3 Video Lessons per week</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="casual-games">
+                        <label for="casual-games">Complete the Games and PDFs in each Video Lesson</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="casual-flashcards">
+                        <label for="casual-flashcards">5 Flashcards per day</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="casual-classes">
+                        <label for="casual-classes">Attend Support Classes for extra practice, if your schedule permits</label>
+                    </li>
+                </ul>
             </div>
             
             <div class="buttons">
-                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
+                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
             </div>
         </div>
 
