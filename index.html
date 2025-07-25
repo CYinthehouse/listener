@@ -250,10 +250,11 @@
 <body>
     <div class="container">
         <div id="frontPage" class="step active">
-            <h1>👋 Do you want to learn about Activities or Classes?</h1>
+            <h1>👋 Do you want to learn about Activities, Classes, or Self-Study?</h1>
             <div class="buttons">
                 <button onclick="showStep('readyStep')" class="primary">Activities</button>
                 <button onclick="showStep('classesSection')" class="secondary">Classes</button>
+                <button onclick="showStep('selfStudySection')" class="class-button">Self-Study</button>
             </div>
         </div>
 
@@ -273,6 +274,68 @@
             
             <div class="buttons">
                 <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+            </div>
+        </div>
+
+        <div id="selfStudySection" class="step">
+            <h1>📖 Self-Study Resources</h1>
+            <p class="class-description">Access your personal study materials and practice tools. Study at your own pace with these resources designed to complement your learning journey.</p>
+            
+            <div class="class-container">
+                <div class="class-buttons-grid">
+                    <button onclick="showStep('videoLessons')" class="class-button">Video Lessons</button>
+                    <button onclick="showStep('practiceExercises')" class="class-button">Practice Exercises</button>
+                    <button onclick="showStep('studyGuides')" class="class-button">Study Guides</button>
+                    <button onclick="showStep('progressTracker')" class="class-button">Progress Tracker</button>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+            </div>
+        </div>
+
+        <div id="videoLessons" class="step">
+            <h1>🎥 Video Lessons</h1>
+            <div class="coaching-content-container">
+                <p>Access your complete library of video lessons. Each lesson is designed to build upon the previous one, so you can learn at your own pace.</p>
+                <p>Watch lessons as many times as you need, take notes, and come back to review difficult concepts whenever you want.</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
+            </div>
+        </div>
+
+        <div id="practiceExercises" class="step">
+            <h1>✏️ Practice Exercises</h1>
+            <div class="coaching-content-container">
+                <p>Interactive exercises and drills to reinforce what you've learned. Practice writing, reading, and comprehension at your own speed.</p>
+                <p>Each exercise provides immediate feedback and explanations to help you understand your mistakes and improve.</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
+            </div>
+        </div>
+
+        <div id="studyGuides" class="step">
+            <h1>📋 Study Guides</h1>
+            <div class="coaching-content-container">
+                <p>Comprehensive study guides and reference materials. Quick lookup for grammar rules, vocabulary lists, and key concepts.</p>
+                <p>Printable resources that you can use offline for review sessions and quick reference during your studies.</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
+            </div>
+        </div>
+
+        <div id="progressTracker" class="step">
+            <h1>📊 Progress Tracker</h1>
+            <div class="coaching-content-container">
+                <p>Monitor your learning progress with detailed analytics. See which areas you've mastered and which need more attention.</p>
+                <p>Set personal goals, track your study time, and celebrate your achievements as you advance through the program.</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('selfStudySection')" class="back-to-class">Back to Self-Study</button>
             </div>
         </div>
 
@@ -325,8 +388,6 @@
                 <button onclick="showStep('classesSection')" class="back-to-class">Back to Class Menu</button>
             </div>
         </div>
-
-
 
         <div id="readyStep" class="step">
             <h1>🎮 Welcome to Daily Activities!</h1>
@@ -498,7 +559,7 @@
                     targetStep.classList.add('active');
                     
                     // Scroll to top for individual class pages on mobile
-                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass'].includes(stepId)) {
+                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass', 'videoLessons', 'practiceExercises', 'studyGuides', 'progressTracker'].includes(stepId)) {
                         if (window.innerWidth <= 768) {
                             setTimeout(() => {
                                 document.querySelector('.container').scrollTop = 0;
