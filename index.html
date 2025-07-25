@@ -157,6 +157,19 @@
             margin: 0.5rem;
         }
         
+        button.large-button {
+            padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
+            min-width: 180px;
+        }
+        
+        .small-description {
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            margin: 2rem auto 2rem auto;
+            opacity: 0.9;
+            max-width: 600px;
+            text-align: center;
+        }
+        
         button.secondary { background: linear-gradient(45deg, #9b59b6, #8e44ad); box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
         button.primary { background: linear-gradient(45deg, #e74c3c, #c0392b); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
         button.pet-yes, button.workout-yes, button.pushup-yes { background: linear-gradient(45deg, #27ae60, #2ecc71); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); }
@@ -287,11 +300,11 @@
 
         <div id="selfStudySection" class="step">
             <h1>📖 Self-Study Resources</h1>
-            <p>Our program has a self-study component. You can study at your own pace! Select your learning style below:</p>
+            <p class="small-description">Our program has a self-study component. You can study at your own pace! Select your learning style below:</p>
             
             <div class="buttons">
-                <button onclick="showStep('casualStudy')" class="primary">CASUAL</button>
-                <button onclick="showStep('seriousStudy')" class="secondary">SERIOUS</button>
+                <button onclick="showStep('casualStudy')" class="primary large-button">CASUAL</button>
+                <button onclick="showStep('seriousStudy')" class="class-button large-button">SERIOUS</button>
             </div>
             
             <div class="buttons">
