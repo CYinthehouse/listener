@@ -190,6 +190,17 @@
             text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db, 1px 1px 0 #3498db;
         }
         
+        .clickable-text {
+            color: #4ecdc4;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        
+        .clickable-text:hover {
+            color: #31afed;
+        }
+        
         .checklist h3 {
             color: #ffd700;
             margin-bottom: 1.5rem;
@@ -370,20 +381,20 @@
                 <h3>CHECKLIST</h3>
                 <ul>
                     <li>
-                        <input type="checkbox" id="casual-videos">
-                        <label for="casual-videos">2-3 Video Lessons per week</label>
+                        <input type="checkbox">
+                        <label>2-3 <span class="clickable-text" onclick="showVideoLessonsPopup()">Video Lessons</span> per week</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="casual-games">
-                        <label for="casual-games">Complete the Games and PDFs in each Video Lesson</label>
+                        <input type="checkbox">
+                        <label>Complete the <span class="clickable-text" onclick="showGamesPopup()">Games and PDFs</span> in each Video Lesson</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="casual-flashcards">
-                        <label for="casual-flashcards">5 Flashcards per day</label>
+                        <input type="checkbox">
+                        <label>5 <span class="clickable-text" onclick="showFlashcardsPopup()">Flashcards</span> per day</label>
                     </li>
                     <li>
-                        <input type="checkbox" id="casual-classes">
-                        <label for="casual-classes">Attend Support Classes for extra practice, if your schedule permits</label>
+                        <input type="checkbox">
+                        <label>Attend <span class="clickable-text" onclick="showSupportClassesPopup()">Support Classes</span> for extra practice, if your schedule permits</label>
                     </li>
                 </ul>
             </div>
@@ -787,6 +798,77 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') exitApplication();
         });
+        
+        // Popup functions for clickable text in casual learning
+        function createPopup(title, content) {
+            const popupContainer = document.createElement('div');
+            popupContainer.id = 'learningPopup';
+            popupContainer.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.9);
+                padding: 20px;
+                border-radius: 15px;
+                z-index: 10001;
+                text-align: center;
+                max-width: 95vw;
+                max-height: 95vh;
+                color: white;
+                font-family: 'Press Start 2P', cursive;
+            `;
+            
+            popupContainer.innerHTML = `
+                <div style="font-size: 0.9rem; margin-bottom: 15px; line-height: 1.4;">
+                    ${title}
+                </div>
+                <div style="font-size: 0.7rem; line-height: 1.6; margin-bottom: 20px; opacity: 0.9;">
+                    ${content}
+                </div>
+                <button onclick="closePopup()" 
+                        style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 25px; cursor: pointer; font-family: 'Press Start 2P', cursive; font-size: 0.8rem;">
+                    Close
+                </button>
+            `;
+            
+            document.body.appendChild(popupContainer);
+        }
+        
+        function closePopup() {
+            const popup = document.getElementById('learningPopup');
+            if (popup) {
+                popup.remove();
+            }
+        }
+        
+        function showVideoLessonsPopup() {
+            createPopup(
+                '🎥 Video Lessons',
+                'Watch 2-3 video lessons per week at your own pace. Each lesson builds on the previous one and includes interactive elements to help you learn Korean effectively. You can pause, rewind, and rewatch as many times as needed!'
+            );
+        }
+        
+        function showGamesPopup() {
+            createPopup(
+                '🎮 Games and PDFs',
+                'Each video lesson comes with fun games and downloadable PDFs to practice what you learned. These interactive activities help reinforce the material and make learning more engaging. Complete them after watching each video!'
+            );
+        }
+        
+        function showFlashcardsPopup() {
+            createPopup(
+                '💳 Flashcards',
+                'Review 5 flashcards daily to build your vocabulary and reinforce key concepts. This spaced repetition method helps move information from short-term to long-term memory. Consistency is key - just 5 cards a day!'
+            );
+        }
+        
+        function showSupportClassesPopup() {
+            createPopup(
+                '👥 Support Classes',
+                'Optional live classes where you can get extra practice and ask questions. These include Monday Sentence Building, Tuesday Reading, and Wednesday Extra Help sessions. Attend when your schedule allows!'
+            );
+        }
     </script>
 </body>
 </html>
