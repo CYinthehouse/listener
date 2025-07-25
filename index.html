@@ -854,46 +854,88 @@
         function createPopup(title, content) {
             const popupContainer = document.createElement('div');
             popupContainer.id = 'learningPopup';
+            
+            // Check if mobile device
+            const isMobile = window.innerWidth <= 768;
+            
             popupContainer.style.cssText = `
                 position: fixed;
-                top: 50%;
+                top: ${isMobile ? '5%' : '50%'};
                 left: 50%;
-                transform: translate(-50%, -50%);
+                transform: translate(-50%, ${isMobile ? '0' : '-50%'});
                 background: rgba(0, 0, 0, 0.9);
                 padding: 20px;
                 border-radius: 15px;
                 z-index: 10001;
                 text-align: center;
-                max-width: 95vw;
-                max-height: 95vh;
+                max-width: ${isMobile ? '90vw' : '95vw'};
+                max-height: ${isMobile ? '85vh' : '95vh'};
+                overflow-y: auto;
                 color: white;
                 font-family: 'Press Start 2P', cursive;
                 opacity: 1;
                 transition: opacity 0.3s ease-out;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             `;
             
             popupContainer.innerHTML = `
-                <div style="font-size: 0.9rem; margin-bottom: 15px; line-height: 1.4;">
-                    ${title}
+                <div style="position: sticky; top: 0; background: rgba(0, 0, 0, 0.9); padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="font-size: ${isMobile ? '0.8rem' : '0.9rem'}; margin-bottom: 15px; line-height: 1.4;">
+                        ${title}
+                    </div>
+                    <button onclick="closePopup()" 
+                            style="padding: 8px 16px; background: #e74c3c; color: white; border: none; border-radius: 25px; cursor: pointer; font-family: 'Press Start 2P', cursive; font-size: ${isMobile ? '0.6rem' : '0.7rem'}; margin-bottom: 10px;">
+                        ✕ Close
+                    </button>
                 </div>
-                <div style="font-size: 0.7rem; line-height: 1.6; margin-bottom: 20px; opacity: 0.9;">
+                <div style="font-size: ${isMobile ? '0.6rem' : '0.7rem'}; line-height: 1.6; opacity: 0.9; padding-bottom: 20px;">
                     ${content}
                 </div>
-                <button onclick="closePopup()" 
-                        style="padding: 10px 20px; background: #e74c3c; color: white; border: none; border-radius: 25px; cursor: pointer; font-family: 'Press Start 2P', cursive; font-size: 0.8rem;">
-                    Close
-                </button>
             `;
             
             document.body.appendChild(popupContainer);
+            
+            // Prevent background scrolling on mobile
+            if (isMobile) {
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Add click outside to close
+            popupContainer.addEventListener('click', function(e) {
+                if (e.target === popupContainer) {
+                    closePopup();
+                }
+            });
+            
+            // Add escape key to close popup
+            const escapeHandler = function(e) {
+                if (e.key === 'Escape') {
+                    closePopup();
+                }
+            };
+            document.addEventListener('keydown', escapeHandler);
+            
+            // Store the handler on the popup element so we can remove it later
+            popupContainer.escapeHandler = escapeHandler;
         }
         
         function closePopup() {
             const popup = document.getElementById('learningPopup');
             if (popup) {
                 popup.style.opacity = '0';
+                
+                // Remove escape key listener
+                if (popup.escapeHandler) {
+                    document.removeEventListener('keydown', popup.escapeHandler);
+                }
+                
                 setTimeout(() => {
                     popup.remove();
+                    // Restore body scrolling on mobile
+                    if (window.innerWidth <= 768) {
+                        document.body.style.overflow = 'auto';
+                    }
                 }, 300);
             }
         }
