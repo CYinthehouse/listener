@@ -192,6 +192,7 @@
         button.class-button { background: linear-gradient(45deg, #3498db, #2980b9); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
         button.coaching-button { background: linear-gradient(45deg, #e74c3c, #c0392b); box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); }
         button.main-menu, button.back-to-class { background: linear-gradient(45deg, #9b59b6, #8e44ad); box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); }
+        button.testimonial-button { background: linear-gradient(45deg, #f39c12, #e67e22); box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3); }
         
         button.large-button {
             padding: clamp(16px, 4vw, 24px) clamp(40px, 8vw, 60px);
@@ -248,6 +249,22 @@
             line-height: 1.1;
             white-space: normal;
             word-wrap: break-word;
+        }
+        
+        .testimonial-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+        
+        .testimonial-buttons-grid button {
+            margin: 0;
+            padding: 1rem 0.5rem;
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+            min-height: 80px;
+            line-height: 1.2;
         }
         
         .coaching-content-container {
@@ -351,10 +368,12 @@
             .coaching-content-container { max-width: 90vw; }
             .coin-benefit { flex-direction: column; text-align: center; }
             .coin-benefit img { width: 110px; height: 110px; margin-bottom: 0.5rem; }
+            .testimonial-buttons-grid { grid-template-columns: 1fr 1fr; }
         }
         
         @media (max-width: 480px) {
             .class-buttons-grid { grid-template-columns: 1fr; }
+            .testimonial-buttons-grid { grid-template-columns: 1fr; }
         }
         
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
@@ -365,11 +384,90 @@
 <body>
     <div class="container">
         <div id="frontPage" class="step active">
-            <h1>👋 Do you want to learn about<br>Activities, Classes,<br>or Self-Study?</h1>
+            <h1>👋 Do you want to learn about<br>Activities, Classes,<br>Self-Study, or Testimonials?</h1>
             <div class="buttons">
                 <button onclick="showStep('readyStep')" class="primary">Activities</button>
                 <button onclick="showStep('classesSection')" class="secondary">Classes</button>
                 <button onclick="showStep('selfStudySection')" class="class-button">Self-Study</button>
+                <button onclick="showStep('testimonialsSection')" class="testimonial-button">Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonialsSection" class="step">
+            <h1>⭐ Student Testimonials</h1>
+            <p class="small-description">Read what our students have to say about their learning experience!</p>
+            
+            <div class="testimonial-buttons-grid">
+                <button onclick="showStep('testimonial1')" class="testimonial-button">Testimonial 1</button>
+                <button onclick="showStep('testimonial2')" class="testimonial-button">Testimonial 2</button>
+                <button onclick="showStep('testimonial3')" class="testimonial-button">Testimonial 3</button>
+                <button onclick="showStep('testimonial4')" class="testimonial-button">Testimonial 4</button>
+                <button onclick="showStep('testimonial5')" class="testimonial-button">Testimonial 5</button>
+                <button onclick="showStep('testimonial6')" class="testimonial-button">Testimonial 6</button>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+            </div>
+        </div>
+
+        <div id="testimonial1" class="step">
+            <h1>⭐ Testimonial 1</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonial2" class="step">
+            <h1>⭐ Testimonial 2</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonial3" class="step">
+            <h1>⭐ Testimonial 3</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonial4" class="step">
+            <h1>⭐ Testimonial 4</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonial5" class="step">
+            <h1>⭐ Testimonial 5</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
+            </div>
+        </div>
+
+        <div id="testimonial6" class="step">
+            <h1>⭐ Testimonial 6</h1>
+            <div class="coaching-content-container">
+                <p>Testimonial content will go here...</p>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Testimonials</button>
             </div>
         </div>
 
@@ -738,7 +836,7 @@
                     targetStep.classList.add('active');
                     
                     // Scroll to top for individual class pages on mobile
-                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass', 'videoLessons', 'practiceExercises', 'studyGuides', 'progressTracker', 'casualStudy', 'seriousStudy'].includes(stepId)) {
+                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass', 'videoLessons', 'practiceExercises', 'studyGuides', 'progressTracker', 'casualStudy', 'seriousStudy', 'testimonial1', 'testimonial2', 'testimonial3', 'testimonial4', 'testimonial5', 'testimonial6'].includes(stepId)) {
                         if (window.innerWidth <= 768) {
                             setTimeout(() => {
                                 document.querySelector('.container').scrollTop = 0;
