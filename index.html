@@ -7,21 +7,39 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         
-        /* Prevent the browser's scroll anchoring from jumping you to the middle */
-        html { overflow-anchor: none; }
-
-        /* Ensure the page itself is the scroll container (not a wrapper div) */
-        html, body {
-          margin: 0;
-          padding: 0;
-          height: auto;
-          min-height: 100%;
-          overflow-x: hidden;   /* avoids width overflows that can affect scroll on mobile */
-          overflow-y: auto;
+        /* --- Fix A: stop top-margin collapse on the very first child --- */
+        html, body { 
+            margin: 0; 
+            padding: 0;
+            height: auto;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;   /* window scrolls, not the .container */
+        }
+        body {
+          /* any non-zero padding/border prevents the first child's margin from escaping */
+          padding-top: 1px;               /* visually imperceptible */
+        }
+        body > *:first-child,
+        main > *:first-child,
+        .container > *:first-child,
+        .markdown-body > *:first-child {
+          margin-top: 0 !important;       /* move that spacing into padding on the section instead if needed */
         }
 
-        /* If you use smooth scrolling, keep it simple to avoid race conditions */
-        html { scroll-behavior: auto; }
+        /* --- Fix B: disable scroll-snap that can lock the viewport mid-page on Android --- */
+        html, body, main, .page, .container {
+          scroll-snap-type: none !important;
+        }
+        *[style*="scroll-snap"],
+        [class*="snap"] {
+          scroll-snap-type: none !important;
+          scroll-snap-align: start !important;
+        }
+
+        /* --- Fix C: keep layout stable while images load (prevents late "jumps") --- */
+        img { height: auto; max-width: 100%; }
+        img[width][height] { aspect-ratio: attr(width number) / attr(height number); } /* supported modern Chrome/Safari */
         
         * {
             margin: 0;
@@ -38,23 +56,22 @@
         }
         
         .container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            position: relative;                 /* was: fixed */
+            width: 100%;
+            min-height: 100dvh;                 /* was: height: 100vh */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center;            /* keeps front page centered; long pages will push height naturally */
             text-align: center;
-            padding: 2rem;
+            padding: calc(2rem + env(safe-area-inset-top)) 2rem 2rem 2rem; /* safe area for iOS notch */
             background: url('https://cdn.shopify.com/s/files/1/0674/6747/7282/files/sky.png?v=1750990355') repeat;
             backdrop-filter: blur(10px);
-            z-index: 9999;
+            z-index: 1;                         /* no need for 9999 if this is the main app */
             animation: fadeInUp 0.8s ease-out;
-            transition: all 0.5s ease-out;
-            overflow-y: auto;
+            transition: padding 0.5s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
+            overflow: visible;                   /* let the document/window handle scrolling */
+            -webkit-overflow-scrolling: touch;   /* iOS smoother scrolling feel (harmless elsewhere) */
         }
         
         .container.disappear {
@@ -941,14 +958,17 @@
                 if (targetStep) {
                     targetStep.classList.add('active');
                     
-                    // Scroll to top for individual class pages on mobile
-                    if (['bonusCoaching', 'mondayClass', 'tuesdayClass', 'wednesdayClass', 'videoLessons', 'practiceExercises', 'studyGuides', 'progressTracker', 'casualStudy', 'seriousStudy', 'testimonial1', 'testimonial2', 'testimonial3', 'testimonial4', 'testimonial5', 'testimonial6'].includes(stepId)) {
-                        if (window.innerWidth <= 768) {
-                            setTimeout(() => {
-                                document.querySelector('.container').scrollTop = 0;
-                            }, 100);
-                        }
-                    }
+                    // Always reset scroll to top after a step change
+                    setTimeout(() => {
+                      // window scroll (primary)
+                      window.scrollTo(0, 0);
+                      document.documentElement.scrollTop = 0;
+                      document.body.scrollTop = 0;
+
+                      // legacy: if a custom scroller ever reappears
+                      const c = document.querySelector('.container');
+                      if (c) c.scrollTop = 0;
+                    }, 0);
                 }
             }, currentActive ? 300 : 0);
         }
@@ -1219,30 +1239,32 @@
     
     <script>
     (function () {
-      // 1) Stop browsers from restoring a mid-page scroll position
-      try {
-        if ('scrollRestoration' in history) {
-          history.scrollRestoration = 'manual';
+      // Stop history from restoring mid-page positions
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+
+      // Insert a tiny sentinel at the very top to further prevent margin collapse
+      document.addEventListener('DOMContentLoaded', function () {
+        if (!document.getElementById('top-sentinel')) {
+          var s = document.createElement('div');
+          s.id = 'top-sentinel';
+          s.style.cssText = 'height:1px;margin:0;padding:0;';
+          document.body.insertBefore(s, document.body.firstChild);
         }
-      } catch (e) { /* ignore */ }
+      });
 
       function toTop() {
-        // Cover all engines: body vs documentElement
         window.scrollTo(0, 0);
-        document.body && (document.body.scrollTop = 0);
-        document.documentElement && (document.documentElement.scrollTop = 0);
+        document.documentElement.scrollTop = 0; // extra belt & suspenders
+        document.body.scrollTop = 0;
       }
 
-      // 2) After load, once layout is stable, jump to top
-      window.addEventListener('load', function () {
-        // A tiny delay lets late-loading assets finish and prevents "anchoring" back
-        setTimeout(toTop, 0);
-      }, { once: true });
-
-      // 3) Handle bfcache (Back/Forward navigation reopening mid-page)
-      window.addEventListener('pageshow', function (evt) {
-        if (evt.persisted) toTop();
+      // Nudge to the top after layout settles (multiple passes catch late-loading content)
+      document.addEventListener('DOMContentLoaded', function () {
+        requestAnimationFrame(toTop);
+        setTimeout(toTop, 200);
       });
+      window.addEventListener('load', function () { setTimeout(toTop, 0); }, { once: true });
+      window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
     })();
     </script>
 </body>
