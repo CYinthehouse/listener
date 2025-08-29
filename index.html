@@ -369,6 +369,27 @@
             .coin-benefit { flex-direction: column; text-align: center; }
             .coin-benefit img { width: 110px; height: 110px; margin-bottom: 0.5rem; }
             .testimonial-buttons-grid { grid-template-columns: 1fr 1fr; }
+            
+            /* Mobile-specific padding adjustments for specified pages */
+            #calvinProfile.active,
+            #testimonialsSection.active,
+            #classesSection.active,
+            #bonusCoaching.active,
+            #tuesdayClass.active,
+            #wednesdayClass.active {
+                padding-top: 1.8rem; /* 10% less than default 2rem */
+                padding-bottom: 2.1rem; /* original 2rem - 10% + 5% extra = 2.1rem */
+            }
+            
+            #calvinProfile .container,
+            #testimonialsSection .container,
+            #classesSection .container,
+            #bonusCoaching .container,
+            #tuesdayClass .container,
+            #wednesdayClass .container {
+                padding-top: 1.8rem;
+                padding-bottom: 2.1rem;
+            }
         }
         
         @media (max-width: 480px) {
