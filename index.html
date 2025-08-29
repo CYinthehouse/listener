@@ -478,6 +478,42 @@
         .hero-image.slide-up img {
             transform: translateY(0);
         }
+        
+        .review-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .review {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .review h3 {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+            text-shadow: -1px -1px 0 #ff8c00, 1px -1px 0 #ff8c00, -1px 1px 0 #ff8c00, 1px 1px 0 #ff8c00;
+        }
+        
+        .review .stars {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            margin-bottom: 0.8rem;
+        }
+        
+        .review p {
+            font-size: clamp(0.7rem, 2.2vw, 0.9rem);
+            line-height: 1.6;
+            text-align: left;
+            margin: 0;
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -523,6 +559,10 @@
                 <button onclick="showStep('testimonial4')" class="testimonial-button">Ellie</button>
                 <button onclick="showStep('testimonial5')" class="testimonial-button">Ari</button>
                 <button onclick="showStep('testimonial6')" class="testimonial-button">Hayley</button>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('moreReviews')" class="class-button">Read More Reviews</button>
             </div>
             
             <div class="buttons">
@@ -629,6 +669,185 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('testimonialsSection')" class="back-to-class">Back to Other Students</button>
+            </div>
+        </div>
+
+        <div id="moreReviews" class="step">
+            <h1>⭐ More Student Reviews</h1>
+            <p class="small-description">Read what our students have to say about their learning journey!</p>
+            
+            <div class="review-container">
+                <div class="review">
+                    <h3>J.W.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Mr. Calvin is very in tune to what a total beginner needs. There are so many activities, games, exercises etc., to help you learn. The price is great!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Phillip M.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>In only 2 weeks, my vocabulary and speaking confidence has grown. The students enrolled are knowledgeable and will always help you. 10/10 course!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Tasha G.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>For the short few weeks I've been learning Korean I feel accomplished. I love the daily exercises and the feedback. I also love the supportive community.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Jennifer L.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Calvin's Korean learning school, is a great way to learn Korean, in an interactive fun and supportive way. The discord community is great!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Melanie S.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Very systematic, well-planned with prudence! I'm glad I chose this among other classes. It doesn't drag, in fact, the opposite.. I've learned so much!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Lshaunda E.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Mr. Calvin and his team of tutors are awesome. I would highly recommend this class.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Soraya H.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I tried learning with Duolingo and I wasn't getting it. Since I used this program, I have been able to pronounce things better.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Mary Bridget H.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>KoreanLearnin.com is an excellent course. Mr Calvin's teaching is easy to understand. He provides a ton of resources to support your learning. I highly recommend!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Paula R.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Calvin and Eva are both very skilled and engaging teachers. The platform also facilitates making friends and studying, I've met very lovely people here.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Amy A.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I am amazed that within a few months I am starting to understand some words, reading, and speaking. I am grateful for the teachers. Thanks for making learning Korean fun.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Susan Y.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Enjoy this class. My study group is amazing. We learn quickly and I'm getting there!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Tiffany T.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>This program is the best! You get way more than you pay for. Extra sessions for reading, sentence building, vocabulary, study groups, and more!!!!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>M.W.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I've tried other paid programs before and it was not a good experience. KoreanLearnin is a step above the rest! Mr. Calvin goes the extra mile.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Kelley E.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>My expectations were exceeded! You get so much material, support, and encouragement. The price that you pay for the class is so affordable, considering what you're getting in return.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Grace B.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I highly recommend KoreanLearnin – I love that it has such a caring community. The teachers are very hands on.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Jackie T.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>The classes are interactive and no student is left behind. You get out of it what you put into it. If you are up to the challenge, this learning experience is worth your time and effort!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Denise V.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Mr. Calvin, all the resources and additional classes are more than worth the cost of the classes. I would recommend this to anyone (and actually have)! He does push when needed, but I needed it. Very happy!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Carmen R.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Korean language is not an easy language to learn, especially if you are technically challenged and/or 71 years young. However, Mr. C makes the class interesting, enjoyable, and challenging!!!!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Greer Z.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I started 2 weeks ago and it has been a fun journey so far. I'm really enjoying these lessons. Highly recommend this class to anyone who has no prior knowledge of Korean.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Angela S.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I started understanding very quickly! Very professional and at the same time, a relaxed environment so that you're not totally stressed out :)</p>
+                </div>
+                
+                <div class="review">
+                    <h3>T.S.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>A great way to learn how to structure your sentences in order to prepare you for speaking Korean. The teacher, Mr. Calvin has a cool sense of humor and makes the lessons fun!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Michelle G.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>Calvin's classes are quirky and fun. They are challenging, but in way that pushes you to continue learning. The discord community is like family!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Lily W.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>There are so many resources that Mr. Calvin has set up for us and the other students are all so friendly. Mr. Calvin has such a positive attitude, so much patience and enthusiasm for teaching.</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Vanessa B.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>The tutoring sessions help with more attention on the areas I need to work on personally without taking away from others in class. Love it!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Theresa M.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I love being in this community that Mr. Calvin started and built for us. This community has helped me get through things more than people think!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Hannah P.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I am grateful for everyone in this community, from the friends I have made along the way, the new friends I will meet, and the incredible instructors that I've gotten to learn from!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Ella A.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>I only joined a couple of months ago, but this community really gave me something to look forward to every night with assignments and classes!</p>
+                </div>
+                
+                <div class="review">
+                    <h3>Hayley M.</h3>
+                    <div class="stars">⭐️⭐️⭐️⭐️⭐️</div>
+                    <p>This community and all of the wonderful and amazing individuals within it have played a huge part in my life! Thank you Mr. Calvin!</p>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
             </div>
         </div>
 
@@ -965,6 +1184,9 @@
         <div id="celebration" class="step">
             <h1>🎉 Congratulations!</h1>
             <p>You've completed all activities! Well done!</p>
+            <div class="buttons">
+                <button onclick="showStep('pushupsStep')" class="secondary">Back</button>
+            </div>
         </div>
 
         <div id="dailyLesson" class="step">
@@ -972,6 +1194,7 @@
             <p style="text-align: center; margin: 0 auto; max-width: 600px;">Please complete 1 video lesson in this student portal. You can also check out the muscle bots for extra review. Happy learning!</p>
             <div class="buttons">
                 <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+                <button onclick="showStep('celebration')" class="secondary">Back</button>
             </div>
         </div>
     </div>
