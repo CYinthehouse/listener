@@ -396,19 +396,63 @@
             </div>
         </div>
 
-        <div id="calvinProfile" class="step">
-            <h1>👨‍🏫 Mr. Calvin's Profile</h1>
-            <div class="coaching-content-container">
-                <p>Meet Mr. Calvin, your expert Korean language teacher.</p>
-                <p>Mr. Calvin is the founder of KoreanLearnin (est. 2022), where he has guided over 1000 students to confidently speak and understand Korean. His teaching style is practical, structured, and engaging; his lessons are built from years of real experience working with diverse learners. He invented the Yodafication technique, a simple way to understand Korean sentence structure using English words.</p>
-                <p>Before creating KoreanLearnin, Mr. Calvin spent 7 years as a dance instructor, mastering the art of breaking down complex breakdancing routines into simple, learnable steps. This is a skill he now applies to language teaching. He also worked for 8 years as a credit counselor, where he built strong communication skills and the ability to connect with people from all walks of life.</p>
-                <p>With his unique background in both education and personal coaching, Mr. Calvin brings his all to every class. Whether you're an absolute beginner or looking to refine your advanced skills, you'll learn Korean in a way that feels approachable, encouraging, and results-driven... no fluff.</p>
-            </div>
-            <div class="buttons">
-                <button onclick="window.open('https://www.tiktok.com/@calvinyimster', '_blank')" class="testimonial-button">Mr. Calvin's TikTok</button>
-                <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
-            </div>
-        </div>
+        <!-- Minimal drop-in: makes #calvinProfile scrollable and mobile-responsive without touching your button classes/styles -->
+<style>
+  /* Structure */
+  #calvinProfile.step {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Enable internal scrolling (works even if body/parent is fixed) */
+  #calvinProfile {
+    max-height: 100vh;      /* fallback */
+    max-height: 100svh;     /* iOS 16+ */
+    max-height: 100dvh;     /* modern browsers */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 24px;
+  }
+
+  /* Type and spacing (safe defaults) */
+  #calvinProfile h1 {
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  #calvinProfile .coaching-content-container p {
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+  }
+
+  /* Mobile-only responsiveness (no button color/shape changes) */
+  @media (max-width: 640px) {
+    #calvinProfile { padding: 16px; }
+    #calvinProfile h1 { font-size: clamp(20px, 6vw, 28px); }
+    #calvinProfile .coaching-content-container p { font-size: clamp(14px, 4vw, 16px); }
+  }
+
+  /* Smooth scrolling if user allows animations */
+  @media (prefers-reduced-motion: no-preference) {
+    #calvinProfile { scroll-behavior: smooth; }
+  }
+</style>
+
+<!-- Your HTML (unchanged; buttons keep your existing classes/colors/shapes) -->
+<div id="calvinProfile" class="step">
+  <h1>👨‍🏫 Mr. Calvin's Profile</h1>
+  <div class="coaching-content-container">
+      <p>Meet Mr. Calvin, your expert Korean language teacher.</p>
+      <p>Mr. Calvin is the founder of KoreanLearnin (est. 2022), where he has guided over 1000 students to confidently speak and understand Korean. His teaching style is practical, structured, and engaging; his lessons are built from years of real experience working with diverse learners. He invented the Yodafication technique, a simple way to understand Korean sentence structure using English words.</p>
+      <p>Before creating KoreanLearnin, Mr. Calvin spent 7 years as a dance instructor, mastering the art of breaking down complex breakdancing routines into simple, learnable steps. This is a skill he now applies to language teaching. He also worked for 8 years as a credit counselor, where he built strong communication skills and the ability to connect with people from all walks of life.</p>
+      <p>With his unique background in both education and personal coaching, Mr. Calvin brings his all to every class. Whether you're an absolute beginner or looking to refine your advanced skills, you'll learn Korean in a way that feels approachable, encouraging, and results-driven... no fluff.</p>
+  </div>
+  <div class="buttons">
+      <button onclick="window.open('https://www.tiktok.com/@calvinyimster', '_blank')" class="testimonial-button">Mr. Calvin's TikTok</button>
+      <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
+  </div>
+</div>
+
 
         <div id="testimonialsSection" class="step">
             <h1>⭐ Student Testimonials</h1>
