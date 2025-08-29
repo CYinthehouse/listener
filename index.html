@@ -409,6 +409,14 @@
             .coin-benefit img { width: 110px; height: 110px; margin-bottom: 0.5rem; }
             .testimonial-buttons-grid { grid-template-columns: 1fr 1fr; }
             
+            .hero-image {
+                margin-top: 1rem;
+            }
+            
+            .hero-image img {
+                width: clamp(320px, 95vw, 600px);
+            }
+            
             /* Mobile-specific padding adjustments for specified pages */
             #calvinProfile.active {
                 padding: 2.5rem 2rem 2.5rem 2rem !important;
@@ -440,9 +448,36 @@
             .testimonial-buttons-grid { grid-template-columns: 1fr; }
         }
         
+        @media screen and (max-width: 435px) {
+            #frontPage button {
+                transform: scale(0.9);        /* shrink button 10% */
+                transform-origin: center;     /* keep it centered */
+            }
+        }
+        
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         button:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
         button:active { transform: translateY(0); }
+        
+        .hero-image {
+            margin-top: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            width: clamp(300px, 60vw, 550px);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100vh);
+            transition: transform 0.8s ease-out;
+        }
+        
+        .hero-image.slide-up img {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -457,6 +492,9 @@
             </div>
             <div style="display: flex; justify-content: center; margin-top: 2rem;">
                 <button onclick="showStep('calvinProfile')" class="class-button" style="background: linear-gradient(45deg, #2c3e50, #3498db); box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);">Mr. Calvin's Profile</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/KOREANLEARNIN.png?v=1754436909" alt="Korean Learning" />
             </div>
         </div>
 
@@ -958,6 +996,16 @@
                 if (targetStep) {
                     targetStep.classList.add('active');
                     
+                    // Trigger slide-up animation for hero image on frontPage
+                    if (stepId === 'frontPage') {
+                        setTimeout(() => {
+                            const heroImage = targetStep.querySelector('.hero-image');
+                            if (heroImage) {
+                                heroImage.classList.add('slide-up');
+                            }
+                        }, 100);
+                    }
+                    
                     // Always reset scroll to top after a step change
                     setTimeout(() => {
                       // window scroll (primary)
@@ -1073,6 +1121,16 @@
         
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') exitApplication();
+        });
+        
+        // Trigger slide-up animation for hero image on initial load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const heroImage = document.querySelector('#frontPage .hero-image');
+                if (heroImage) {
+                    heroImage.classList.add('slide-up');
+                }
+            }, 800);
         });
         
         // Popup functions for clickable text in casual learning
