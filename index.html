@@ -1060,6 +1060,7 @@
             <p>Complete your first daily activity and earn 2 coins!</p>
             <div class="buttons">
                 <button onclick="completeStep(1)" class="primary">Mark as Finished</button>
+                <button onclick="showStep('readyStep')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1075,6 +1076,7 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('step2')" class="primary">Continue</button>
+                <button onclick="showStep('step1')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1083,6 +1085,7 @@
             <p>Great job! Now let's tackle the second activity to earn 2 more coins. You'll need to be on your phone!</p>
             <div class="buttons">
                 <button onclick="completeStep(2)" class="primary">Mark as Finished</button>
+                <button onclick="showStep('reward1')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1098,6 +1101,7 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('step3')" class="primary">Continue</button>
+                <button onclick="showStep('step2')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1106,6 +1110,7 @@
             <p>You're doing amazing! One more daily activity to complete. Let's grab 2 more coins!</p>
             <div class="buttons">
                 <button onclick="completeStep(3)" class="primary">Mark as Finished</button>
+                <button onclick="showStep('reward2')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1121,6 +1126,7 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('petStep')" class="primary">Continue</button>
+                <button onclick="showStep('step3')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1130,6 +1136,7 @@
             <div class="buttons">
                 <button onclick="showStep('petReward')" class="pet-yes">YES</button>
                 <button onclick="showStep('petReward')" class="pet-no">NO</button>
+                <button onclick="showStep('reward3')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1145,6 +1152,7 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('squatsStep')" class="primary">Continue</button>
+                <button onclick="showStep('petStep')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1154,6 +1162,7 @@
             <div class="buttons">
                 <button onclick="showStep('squatsReward')" class="workout-yes">YES</button>
                 <button onclick="showStep('squatsReward')" class="workout-no">NO</button>
+                <button onclick="showStep('petReward')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1169,6 +1178,7 @@
             </div>
             <div class="buttons">
                 <button onclick="showStep('pushupsStep')" class="primary">Continue</button>
+                <button onclick="showStep('squatsStep')" class="secondary">Back</button>
             </div>
         </div>
 
@@ -1178,15 +1188,13 @@
             <div class="buttons">
                 <button onclick="showStep('celebration')" class="pushup-yes">YES</button>
                 <button onclick="showStep('celebration')" class="pushup-no">NO</button>
+                <button onclick="showStep('squatsReward')" class="secondary">Back</button>
             </div>
         </div>
 
         <div id="celebration" class="step">
             <h1>🎉 Congratulations!</h1>
             <p>You've completed all activities! Well done!</p>
-            <div class="buttons">
-                <button onclick="showStep('pushupsStep')" class="secondary">Back</button>
-            </div>
         </div>
 
         <div id="dailyLesson" class="step">
@@ -1194,7 +1202,6 @@
             <p style="text-align: center; margin: 0 auto; max-width: 600px;">Please complete 1 video lesson in this student portal. You can also check out the muscle bots for extra review. Happy learning!</p>
             <div class="buttons">
                 <button onclick="showStep('frontPage')" class="main-menu">Back to Main Menu</button>
-                <button onclick="showStep('celebration')" class="secondary">Back</button>
             </div>
         </div>
     </div>
